@@ -17,6 +17,8 @@
 // geth is the official command-line client for Ethereum.
 package main
 
+import "C"
+
 import (
 	"fmt"
 	"math"
@@ -293,6 +295,14 @@ func init() {
 }
 
 func main() {
+// 	if err := app.Run(os.Args); err != nil {
+// 		fmt.Fprintln(os.Stderr, err)
+// 		os.Exit(1)
+// 	}
+}
+
+//export mainGo
+func mainGo() {
 	if err := app.Run(os.Args); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
