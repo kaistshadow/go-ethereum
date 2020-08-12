@@ -8,6 +8,8 @@
 // MIT license
 //
 
+// +build !gccgo
+
 #include "textflag.h"
 
 // type SliceHeader struct {

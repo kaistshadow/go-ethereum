@@ -8,6 +8,8 @@
 // MIT license
 //
 
+// +build !gccgo
+
 #include "textflag.h"
 
 TEXT ·CountBitsInt8PopCnt(SB),NOSPLIT,$0
