@@ -29,7 +29,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
+    "unsafe"
+    "C"
 	"github.com/elastic/gosigar"
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
@@ -301,9 +302,20 @@ func main() {
 // 	}
 }
 
+func parseArgv(argv **C.char, index int) (string) {
+    return C.GoString(*(**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(argv)) + uintptr(8 * index))))
+}
+
 //export mainGo
-func mainGo() {
-	if err := app.Run(os.Args); err != nil {
+func mainGo(argc int, argv **C.char) {
+
+    strArray := make([] string, argc)
+
+    for i:=1; i<argc; i++ {
+        strArray[i] = parseArgv(argv, i)
+    }
+
+	if err := app.Run(strArray); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
