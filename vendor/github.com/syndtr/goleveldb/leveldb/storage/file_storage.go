@@ -640,6 +640,7 @@ func fsGenOldName(fd FileDesc) string {
 
 func fsParseName(name string) (fd FileDesc, ok bool) {
 	var tail string
+	fmt.Println("here!!!!!!!")
 	_, err := fmt.Sscanf(name, "%d.%s", &fd.Num, &tail)
 	if err == nil {
 		switch tail {
