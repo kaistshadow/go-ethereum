@@ -31,6 +31,8 @@ import (
 	"time"
     "unsafe"
     "C"
+	"unsafe"
+
 	"github.com/elastic/gosigar"
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/accounts/keystore"

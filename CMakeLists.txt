@@ -35,6 +35,7 @@ add_custom_command(OUTPUT ${CMAKE_INSTALL_PREFIX}/plugins/libgeth_1.9.1dev_gccgo
         DEPENDS geth_setup_build_gccgo
         DEPENDS ${GETH_1.9.1DEV_SRCS}
         COMMAND ${CMAKE_COMMAND} -E env "GOPATH=${CMAKE_CURRENT_SOURCE_DIR}/build/_workspace" go install -buildmode c-shared -compiler gccgo -v -gccgoflags fuse-ld=gold -gcflags -N-l ./cmd/geth
+        COMMAND ${CMAKE_COMMAND} -E env "GOPATH=${CMAKE_CURRENT_SOURCE_DIR}/build/_workspace" go install -buildmode c-shared -compiler gccgo -gccgoflags fuse-ld=gold -v ./cmd/geth
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/build/_workspace/pkg/gccgo_linux_amd64_fPIC/github.com/ethereum/go-ethereum/cmd/libgeth.a ${CMAKE_INSTALL_PREFIX}/plugins/libgeth_1.9.1dev_gccgo.so
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/_workspace/src/github.com/ethereum/go-ethereum
         )
